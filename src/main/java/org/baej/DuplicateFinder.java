@@ -51,13 +51,16 @@ public class DuplicateFinder extends SimpleFileVisitor<Path> {
                 .collect(Collectors.groupingBy(path -> {
                     try {
                         return getChecksum(path);
-                    } catch (NoSuchAlgorithmException | IOException e) {
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                        return "err";
+                    } catch (NoSuchAlgorithmException e) {
                         throw new RuntimeException(e);
                     }
                 }))
                 .entrySet()
                 .stream()
-                .filter(entry -> entry.getValue().size() >= 2)
+                .filter(entry -> !entry.getKey().equals("err") && entry.getValue().size() >= 2)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         return duplicates;

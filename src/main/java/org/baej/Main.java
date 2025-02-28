@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
 
-        Path rootPath = Path.of(args[0]);
+        Path rootPath = Path.of("d:");
 
         if (!Files.isDirectory(rootPath)) {
             System.err.println("Not a directory.");
