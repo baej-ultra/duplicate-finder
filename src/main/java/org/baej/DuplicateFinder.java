@@ -25,6 +25,11 @@ public class DuplicateFinder extends SimpleFileVisitor<Path> {
         }
     }
 
+    /**
+     * Returns a map where the key is a checksum and the value is a list of paths.
+     *
+     * @return a {@code Map} with the checksum as the {@code key} and a list of Path objects as the {@code value}
+     */
     public Map<String, List<Path>> getDuplicates() {
         // Get candidates based on file size
         List<List<Path>> candidates = paths.stream()
