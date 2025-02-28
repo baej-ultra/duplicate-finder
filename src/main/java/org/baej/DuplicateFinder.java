@@ -55,7 +55,8 @@ public class DuplicateFinder extends SimpleFileVisitor<Path> {
                         throw new RuntimeException(e);
                     }
                 }))
-                .entrySet().stream()
+                .entrySet()
+                .stream()
                 .filter(entry -> entry.getValue().size() >= 2)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
